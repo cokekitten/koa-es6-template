@@ -3,14 +3,17 @@
   "version": "0.0.1",
   "author": "LeoRoger",
   "scripts": {
-    "start": "node bin/www",
-    "dev": "cross-env NODE_ENV=dev node_modules/.bin/nodemon bin/www",
+    "start": "babel-node bin/www",
+    "dev": "cross-env NODE_ENV=dev node_modules/.bin/nodemon --exec babel-node bin/www",
+    "serve": "npm run build && node dist/server.bundle",
+    "build": "npx webpack",
     "lint": "eslint ./src ./__test__ --ext js,ts,tsx",
     "lint-fix": "eslint ./src ./__test__ --ext js,ts,tsx --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:local": "cross-env NODE_ENV=test_local jest --runInBand --passWithNoTests --colors --forceExit"
   },
   "dependencies": {
+    "@babel/runtime": "^7.16.3",
     "ajv": "^8.8.2",
     "cross-env": "^7.0.3",
     "debug": "^4.3.2",
@@ -29,6 +32,15 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/node": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.4",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/register": "^7.16.0",
+    "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
     "commitlint": "^15.0.0",
     "commitlint-config-cz": "^0.13.2",
     "cz-customizable": "^6.3.0",
@@ -37,11 +49,16 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
+    "externals-dependencies": "^1.0.4",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
     "lint-staged": "^12.1.2",
     "nodemon": "^2.0.15",
-    "prettier": "^2.5.0"
+    "prettier": "^2.5.0",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0",
+    "webpack-node-externals": "^3.0.0"
   },
   "husky": {
     "hooks": {

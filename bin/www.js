@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
 /**
- * Module dependencies.
  * 模块依赖
  */
-const debug = require('debug')('demo:server')
-const http = require('http')
-const app = require('../src/app')
+import http from 'http'
+import Debugger from 'debug'
+import app from '../src/app'
+
+const debug = Debugger('demo:server')
 
 /**
  * 从环境变量中获取端口号，或直接设置端口号

@@ -1,0 +1,10 @@
+{
+  "presets": [
+    "@babel/preset-env"
+  ],
+  "comments": false,
+  "plugins": [
+    "@babel/plugin-transform-runtime"
+  ],
+  "sourceType": "unambiguous"
+}

@@ -1,17 +1,19 @@
 // 库导入
-const Koa = require('koa')
-const views = require('koa-views')
-const json = require('koa-json')
-const onerror = require('koa-onerror')
-const bodyparser = require('koa-bodyparser')
-const logger = require('koa-logger')
+import Koa from 'koa'
+import Router from 'koa-router'
+import views from 'koa-views'
+import json from 'koa-json'
+import onerror from 'koa-onerror'
+import bodyparser from 'koa-bodyparser'
+import logger from 'koa-logger'
 
 // 路由导入
-const index = require('./routes/index')
-const users = require('./routes/users')
+import indexRouter from './routes/index'
+import usersRouter from './routes/users'
 
 // 实例化
 const app = new Koa()
+const router = Router()
 
 // error handler 错误处理
 onerror(app)
@@ -41,12 +43,13 @@ app.use(async (ctx, next) => {
 })
 
 // routes 注册路由
-app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
+app.use(router.routes()).use(router.allowedMethods())
+router.use(indexRouter.routes(), indexRouter.allowedMethods())
+router.use(usersRouter.routes(), usersRouter.allowedMethods())
 
 // error-handling 错误处理
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
 })
 
-module.exports = app
+export default app
