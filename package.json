@@ -1,0 +1,63 @@
+{
+  "name": "koa-es6-template",
+  "version": "0.0.1",
+  "author": "LeoRoger",
+  "scripts": {
+    "start": "node bin/www",
+    "dev": "cross-env NODE_ENV=dev node_modules/.bin/nodemon bin/www",
+    "lint": "eslint ./src ./__test__ --ext js,ts,tsx",
+    "lint-fix": "eslint ./src ./__test__ --ext js,ts,tsx --fix",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:local": "cross-env NODE_ENV=test_local jest --runInBand --passWithNoTests --colors --forceExit"
+  },
+  "dependencies": {
+    "ajv": "^8.8.2",
+    "cross-env": "^7.0.3",
+    "debug": "^4.3.2",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-convert": "^2.0.0",
+    "koa-json": "^2.0.2",
+    "koa-jwt": "^4.0.3",
+    "koa-logger": "^3.2.1",
+    "koa-onerror": "^4.1.0",
+    "koa-router": "^10.1.1",
+    "koa-static": "^5.0.0",
+    "koa-views": "^8.0.0",
+    "koa2-cors": "^2.0.6",
+    "lodash": "^4.17.21",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "commitlint": "^15.0.0",
+    "commitlint-config-cz": "^0.13.2",
+    "cz-customizable": "^6.3.0",
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.3.1",
+    "lint-staged": "^12.1.2",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint",
+      "npm run test:local"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  }
+}
